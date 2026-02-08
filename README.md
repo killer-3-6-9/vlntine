@@ -6,150 +6,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Comic Sans MS',cursive}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-body{
-height:100vh;
-overflow:hidden;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(270deg,#ff0080,#ff8c00,#40e0d0,#ff0080);
-background-size:800% 800%;
-animation:bg 12s ease infinite;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-@keyframes bg{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
+body {
+  height: 100vh;
+  background: linear-gradient(-45deg, #ff4e50, #f857a6, #ff758c, #ff7eb3);
+  background-size: 400% 400%;
+  animation: bgMove 12s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
 }
 
-/* Glass card */
-.card{
-backdrop-filter:blur(20px);
-background:rgba(255,255,255,0.2);
-border:2px solid rgba(255,255,255,0.3);
-padding:50px;
-border-radius:30px;
-text-align:center;
-box-shadow:0 30px 60px rgba(0,0,0,0.4);
-color:white;
-z-index:10;
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-h1{
-font-size:3rem;
-text-shadow:0 0 15px pink;
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(14px);
+  padding: 45px;
+  border-radius: 30px;
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
 }
 
-.buttons{
-margin-top:30px;
-display:flex;
-gap:25px;
-justify-content:center;
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
 }
 
-button{
-padding:15px 45px;
-font-size:1.4rem;
-border:none;
-border-radius:50px;
-cursor:pointer;
-transition:0.3s;
+p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
 }
 
-#yesBtn{
-background:#ff2e63;
-color:white;
-box-shadow:0 0 20px hotpink;
-animation:pulse 2s infinite;
+.buttons {
+  position: relative;
+  height: 70px;
 }
 
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.05)}
-100%{transform:scale(1)}
+button {
+  padding: 14px 32px;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-#noBtn{
-background:#222;
-color:white;
+#yes {
+  background: #ff2e63;
+  color: white;
+  box-shadow: 0 0 25px rgba(255,46,99,0.9);
 }
 
-/* Love meter */
-.meter{
-width:100%;
-height:15px;
-background:rgba(255,255,255,0.3);
-border-radius:20px;
-margin-top:20px;
-overflow:hidden;
+#no {
+  background: white;
+  color: #ff2e63;
+  position: absolute;
+  right: 0;
 }
 
-.fill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#ff2e63,#ffcccb);
-transition:0.5s;
+#msg {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  min-height: 30px;
 }
 
-#message{
-margin-top:15px;
-font-size:1.2rem;
+/* Floating love items */
+.love {
+  position: absolute;
+  font-size: 22px;
+  animation: float 6s linear infinite;
+  opacity: 0.9;
 }
 
-/* Floating emojis */
-.float{
-position:absolute;
-animation:float 6s linear infinite;
-font-size:24px;
-}
-
-@keyframes float{
-from{transform:translateY(100vh);opacity:1}
-to{transform:translateY(-10vh);opacity:0}
-}
-
-/* Sparkles */
-.spark{
-position:absolute;
-width:6px;
-height:6px;
-background:gold;
-border-radius:50%;
-pointer-events:none;
-animation:spark 1s forwards;
-}
-
-@keyframes spark{
-to{transform:scale(4);opacity:0}
+@keyframes float {
+  0% { transform: translateY(100vh) scale(0.6); }
+  100% { transform: translateY(-10vh) scale(1.4); }
 }
 
 /* Confetti */
-.confetti{
-position:absolute;
-width:10px;
-height:10px;
-animation:fall 3s linear infinite;
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: white;
+  animation: fall 3s linear forwards;
 }
 
-@keyframes fall{
-from{transform:translateY(-10vh) rotate(0)}
-to{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* Shake */
-.shake{
-animation:shake 0.3s;
-}
-
-@keyframes shake{
-0%{transform:translateX(0)}
-25%{transform:translateX(-10px)}
-50%{transform:translateX(10px)}
-75%{transform:translateX(-10px)}
-100%{transform:translateX(0)}
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(720deg); }
 }
 </style>
 </head>
@@ -157,107 +119,77 @@ animation:shake 0.3s;
 <body>
 
 <div class="card" id="card">
-<h1>Will you be my Valentine? 💖</h1>
+  <h1>💍 Will You Be My Valentine? 💖</h1>
+  <p>I promise unlimited smiles, care & love 😌</p>
 
-<div class="buttons">
-<button id="yesBtn">Yes 😍</button>
-<button id="noBtn">No 🙄</button>
+  <div class="buttons">
+    <button id="yes">Yes 💕</button>
+    <button id="no">No 🙃</button>
+  </div>
+
+  <div id="msg"></div>
 </div>
-
-<div class="meter">
-<div class="fill" id="fill"></div>
-</div>
-
-<div id="message"></div>
-</div>
-
-<audio id="music" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
-</audio>
 
 <script>
-const yesBtn=document.getElementById("yesBtn")
-const noBtn=document.getElementById("noBtn")
-const msg=document.getElementById("message")
-const fill=document.getElementById("fill")
-const card=document.getElementById("card")
-const music=document.getElementById("music")
+let count = 0;
+const messages = [
+  "Are you really sure? 🥺",
+  "That hurt a little 💔",
+  "I’ll wait… 😌",
+  "Love says try again 💖",
+  "You know you want to 😏",
+  "Destiny says YES 💍"
+];
 
-let count=0
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+const msg = document.getElementById("msg");
+const card = document.getElementById("card");
 
-const texts=[
-"Are you sure? 🥺",
-"Think again 💭",
-"My heart is breaking 💔",
-"I spent hours coding this 😭",
-"Don't be evil 😤",
-"You cannot escape 😈",
-"YES IS DESTINY 💘"
-]
+no.addEventListener("click", () => {
+  count++;
+  msg.textContent = messages[count % messages.length];
 
-noBtn.onclick=()=>{
-count++
-msg.innerText=texts[count%texts.length]
+  // grow yes
+  yes.style.transform = `scale(${1 + count * 0.25})`;
 
-fill.style.width=Math.min(count*15,100)+"%"
+  // dodge no
+  no.style.top = Math.random() * 40 + "px";
+  no.style.left = Math.random() * 200 - 100 + "px";
+});
 
-yesBtn.style.transform=`scale(${1+count*0.2})`
-yesBtn.style.boxShadow=`0 0 ${20+count*10}px hotpink`
+yes.addEventListener("click", () => {
+  card.innerHTML = `
+    <h1>YAAAY!! 💖🎉</h1>
+    <p>You just made this Valentine unforgettable 💍✨</p>
+  `;
+  confettiBlast();
+});
 
-noBtn.style.position="absolute"
-noBtn.style.left=Math.random()*80+"%"
-noBtn.style.top=Math.random()*80+"%"
+// floating hearts & rings
+setInterval(() => {
+  const el = document.createElement("div");
+  el.className = "love";
+  el.innerHTML = Math.random() > 0.5 ? "💖" : "💍";
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.animationDuration = 4 + Math.random() * 4 + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 8000);
+}, 250);
 
-card.classList.add("shake")
-setTimeout(()=>card.classList.remove("shake"),300)
-
-spawnFloat()
+// confetti
+function confettiBlast() {
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = `hsl(${Math.random()*360},100%,70%)`;
+    c.style.animationDuration = 2 + Math.random() * 2 + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
 }
-
-yesBtn.onclick=()=>{
-music.play()
-document.body.innerHTML=`
-<h1 style="font-size:4rem;color:white;text-align:center;">
-💖 YOU SAID YES 💖<br><br>
-THIS IS TRUE LOVE 😍💍
-</h1>
-`
-for(let i=0;i<200;i++)spawnConfetti()
-for(let i=0;i<100;i++)spawnFloat()
-}
-
-/* Floating emojis */
-function spawnFloat(){
-const e=document.createElement("div")
-e.className="float"
-const arr=["❤️","💖","💕","💋","💍","😍","🥰"]
-e.innerHTML=arr[Math.floor(Math.random()*arr.length)]
-e.style.left=Math.random()*100+"vw"
-e.style.fontSize=Math.random()*30+20+"px"
-document.body.appendChild(e)
-setTimeout(()=>e.remove(),6000)
-}
-setInterval(spawnFloat,250)
-
-/* Confetti */
-function spawnConfetti(){
-const c=document.createElement("div")
-c.className="confetti"
-c.style.left=Math.random()*100+"vw"
-c.style.background=`hsl(${Math.random()*360},100%,50%)`
-document.body.appendChild(c)
-setTimeout(()=>c.remove(),3000)
-}
-
-/* Sparkles */
-document.addEventListener("mousemove",e=>{
-const s=document.createElement("div")
-s.className="spark"
-s.style.left=e.pageX+"px"
-s.style.top=e.pageY+"px"
-document.body.appendChild(s)
-setTimeout(()=>s.remove(),1000)
-})
 </script>
+
 </body>
 </html>
